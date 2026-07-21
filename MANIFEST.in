@@ -1,0 +1,4 @@
+include README.en.md
+include CHANGELOG.md
+include DEVELOP.md
+recursive-include docs *.md

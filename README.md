@@ -22,9 +22,25 @@ ChatArch video tooling package.
 pip install -e ".[dev]"
 chatvideo --help
 chatvideo --version
+chatvideo design
+chatvideo design --workflow image-to-video --format json
 python -m pytest -q
 python -m build
 ```
+
+## CLI 设计方向
+
+当前包先沉淀 provider-neutral 的 CLI 蓝图，避免把具体项目素材、内部路径、任务 ID、分享链接或密钥写进可复用文档。完整说明见 `docs/cli-design.md`。
+
+初步覆盖的工作流：
+
+- `chatvideo edit ...`：已有视频的拼接、裁剪、转场和终版组装。
+- `chatvideo generate text ...`：文生视频任务提交、轮询、下载和安全摘要。
+- `chatvideo generate image ...`：多参考图图生视频和顺序确认。
+- `chatvideo generate frames ...`：首尾帧约束的分段生成。
+- `chatvideo review ...` / `chatvideo final ...`：临时 review 与最终交付分离。
+
+本阶段新增的 `chatvideo design` 只输出设计蓝图，不提交外部生成任务，也不发布文件。
 
 ## CLI 规范
 
