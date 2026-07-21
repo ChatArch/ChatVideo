@@ -26,7 +26,11 @@ chatvideo design
 chatvideo design --workflow image-to-video --format json
 python -m pytest -q
 python -m build
+python -m pip install -e ".[docs]"
+mkdocs build --strict
 ```
+
+Documentation site: <https://arch.gh.wzhecnu.cn/ChatVideo/>
 
 ## CLI Direction
 
