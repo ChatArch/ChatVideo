@@ -78,15 +78,15 @@ BLUEPRINTS = (
     WorkflowBlueprint(
         key="image-to-video",
         title="Image to Video",
-        purpose="Generate motion from one or more image references.",
+        purpose="Generate video from ordered keyframe images, especially a three-image story that is split into first/last-frame segments.",
         commands=(
             CommandBlueprint(
-                "chatvideo generate image --images inputs/ --duration 10 --review-dir review/",
-                "Use ordered reference images to create a review clip.",
+                "chatvideo storyboard order --images frame-01.png frame-02.png frame-03.png --output storyboard.json",
+                "Record the reviewed three-keyframe order before generation.",
             ),
             CommandBlueprint(
-                "chatvideo storyboard order --images inputs/ --output storyboard.json",
-                "Record the reviewed image order before generation.",
+                "chatvideo generate image --keyframes storyboard.json --mode first-last-frame --review-dir review/",
+                "Use an image-to-video provider through adjacent first/last-frame segment jobs.",
             ),
             CommandBlueprint(
                 "chatvideo workflow run --storyboard storyboard.json --one-segment-at-a-time",
@@ -96,29 +96,31 @@ BLUEPRINTS = (
         privacy=PRIVACY_BASELINE
         + (
             "Do not copy source images to public storage just to satisfy provider inputs.",
+            "Treat the three keyframe images as private source inputs until the user approves a review or final artifact.",
         ),
     ),
     WorkflowBlueprint(
         key="first-last-frame",
         title="First and Last Frame",
-        purpose="Constrain a segment with explicit start and end frames.",
+        purpose="Turn adjacent keyframe pairs into bounded image-to-video segments.",
         commands=(
             CommandBlueprint(
-                "chatvideo generate frames --first start.png --last end.png --duration 10",
-                "Create one bounded segment from two endpoint frames.",
+                "chatvideo generate frames --first frame-01.png --last frame-02.png --duration 5 --review-dir review/segment-01",
+                "Create the first bounded segment from the first and middle keyframes.",
             ),
             CommandBlueprint(
-                "chatvideo workflow split --frames ordered/ --duration-per-segment 10",
-                "Split multi-frame stories into adjacent first/last-frame jobs.",
+                "chatvideo generate frames --first frame-02.png --last frame-03.png --duration 5 --review-dir review/segment-02",
+                "Create the second bounded segment from the middle and final keyframes.",
             ),
             CommandBlueprint(
                 "chatvideo edit concat --manifest generated-segments.json --output final.mp4",
-                "Assemble approved segments into a final cut.",
+                "Assemble approved first/last-frame segments into one final video.",
             ),
         ),
         privacy=PRIVACY_BASELINE
         + (
-            "Endpoint frames are treated as private inputs; only approved clips become shareable.",
+            "Endpoint/keyframe images are treated as private inputs; only approved clips become shareable.",
+            "A three-image input becomes adjacent segment jobs instead of a public three-image prompt bundle.",
         ),
     ),
     WorkflowBlueprint(

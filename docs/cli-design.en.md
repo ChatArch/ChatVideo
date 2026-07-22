@@ -4,11 +4,32 @@ This document records the first provider-neutral CLI shape for ChatVideo. It is 
 
 ## Design Goals
 
+- Prioritize the current image-to-video need: ordered keyframe images, especially a three-image storyboard, produce one video through adjacent first/last-frame segments.
 - Cover editing, text-to-video, image-to-video, first/last-frame generation, review publishing, and final export.
 - Keep review artifacts separate from durable final deliverables.
 - Make every generated clip traceable through local manifests without storing secrets.
 - Support one-segment-at-a-time review for expensive or uncertain generation jobs.
 - Leave provider details behind ChatEnv-style environment profiles and future adapters.
+
+## Current User Model
+
+This is not a video-chat product, and it is not only an editing wrapper for existing clips. The current target is an image-to-video model flow: the user provides ordered images, and the provider generates video under those image constraints.
+
+A typical three-image storyboard looks like this:
+
+```text
+frame-01.png  ->  frame-02.png  ->  frame-03.png
+```
+
+If the provider accepts first and last frames for one generated segment, ChatVideo should split the three images into adjacent segment jobs:
+
+```text
+segment-01: frame-01.png -> frame-02.png
+segment-02: frame-02.png -> frame-03.png
+final.mp4:  segment-01 + segment-02
+```
+
+Therefore, the `generate image` and `generate frames` commands documented here are design blueprints. They describe how a future CLI should accept keyframes, record order, review segments, and assemble the final video. This PR implements only `chatvideo design`, which prints the blueprint.
 
 ## Proposed Command Groups
 
@@ -47,35 +68,36 @@ Expected behavior:
 
 ### chatvideo generate image
 
-Owns image-to-video jobs with one or more ordered reference images.
+Owns image-to-video planning from ordered keyframes. The typical input is not one isolated picture and not a public sample bundle; it is a user-reviewed ordered keyframe set.
 
 ```bash
-chatvideo storyboard order --images inputs/ --output storyboard.json
-chatvideo generate image --images inputs/ --duration 10 --review-dir review/
+chatvideo storyboard order --images frame-01.png frame-02.png frame-03.png --output storyboard.json
+chatvideo generate image --keyframes storyboard.json --mode first-last-frame --review-dir review/
 chatvideo workflow run --storyboard storyboard.json --one-segment-at-a-time
 ```
 
 Expected behavior:
 
 - Captures the reviewed image order before generation.
+- Sends a three-keyframe story into first/last-frame segment planning instead of one opaque multi-image prompt.
 - Keeps raw images local by default.
 - Produces review clips before final export.
 
 ### chatvideo generate frames
 
-Owns first/last-frame generation for a single bounded segment.
+Owns the adjacent-keyframe jobs sent to a provider that supports first/last-frame constrained video generation.
 
 ```bash
-chatvideo generate frames --first start.png --last end.png --duration 10
-chatvideo workflow split --frames ordered/ --duration-per-segment 10
+chatvideo generate frames --first frame-01.png --last frame-02.png --duration 5 --review-dir review/segment-01
+chatvideo generate frames --first frame-02.png --last frame-03.png --duration 5 --review-dir review/segment-02
 chatvideo edit concat --manifest generated-segments.json --output final.mp4
 ```
 
 Expected behavior:
 
-- Treats endpoint frames as private inputs.
-- Splits multi-frame stories into adjacent first/last-frame jobs.
-- Assembles only approved segments into a final cut.
+- Treats every keyframe image as a private input.
+- For one video from three images, defaults to two adjacent first/last-frame jobs.
+- Reviews each segment and assembles only approved segments into the final video.
 
 ### chatvideo review and chatvideo final
 

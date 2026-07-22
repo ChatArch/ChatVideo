@@ -1,6 +1,6 @@
 # ChatVideo Documentation
 
-ChatVideo is ChatArch's video workflow CLI/API package. The current focus is turning practical video workflows into reusable command designs: local editing, text-to-video, image-to-video, first/last-frame segment generation, review publishing, and final delivery.
+ChatVideo is ChatArch's video workflow CLI/API package. The current focus is turning practical image-to-video workflows into reusable command designs: ordered keyframes, especially a three-image storyboard, become adjacent first/last-frame segments that are reviewed, assembled, and delivered as one video.
 
 Site entry: <https://arch.gh.wzhecnu.cn/ChatVideo/>
 
@@ -11,7 +11,8 @@ Site entry: <https://arch.gh.wzhecnu.cn/ChatVideo/>
 | Understand the current CLI direction | [CLI Design Blueprint](cli-design.md) |
 | Plan concat, trim, and transitions for existing clips | [CLI Design Blueprint](cli-design.md#chatvideo-edit) |
 | Plan text-to-video submission and download | [CLI Design Blueprint](cli-design.md#chatvideo-generate-text) |
-| Plan image-to-video from ordered images | [CLI Design Blueprint](cli-design.md#chatvideo-generate-image) |
+| Plan the image-to-video model input shape | [CLI Design Blueprint](cli-design.md#current-user-model) |
+| Plan one video from three keyframe images | [CLI Design Blueprint](cli-design.md#chatvideo-generate-frames) |
 | Plan first/last-frame segment generation | [CLI Design Blueprint](cli-design.md#chatvideo-generate-frames) |
 | Separate temporary review from final delivery | [CLI Design Blueprint](cli-design.md#chatvideo-review-and-chatvideo-final) |
 

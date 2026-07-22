@@ -24,6 +24,7 @@ chatvideo --help
 chatvideo --version
 chatvideo design
 chatvideo design --workflow image-to-video --format json
+chatvideo design --workflow first-last-frame
 python -m pytest -q
 python -m build
 python -m pip install -e ".[docs]"
@@ -34,14 +35,14 @@ Documentation site: <https://arch.gh.wzhecnu.cn/ChatVideo/>
 
 ## CLI Direction
 
-The package now records a provider-neutral CLI blueprint without embedding concrete project media, internal paths, task ids, share URLs, or credentials in reusable docs. See `docs/cli-design.md` for the full design note.
+The package now records a provider-neutral image-to-video CLI blueprint without embedding concrete project media, internal paths, task ids, share URLs, or credentials in reusable docs. The current focus is not video chat and not only editing existing clips; it is an image-to-video model flow where ordered keyframes, especially a three-image storyboard, are split into adjacent first/last-frame segments and then assembled into one video. See `docs/cli-design.md` for the full design note.
 
 Initial workflow coverage:
 
 - `chatvideo edit ...`: concat, trim, transitions, and final assembly for existing clips.
 - `chatvideo generate text ...`: text-to-video submission, polling, download, and safe summaries.
-- `chatvideo generate image ...`: image-to-video from ordered reference images.
-- `chatvideo generate frames ...`: first/last-frame constrained segment generation.
+- `chatvideo generate image ...`: generate video from ordered keyframes; a typical three-image storyboard becomes adjacent first/last-frame segments.
+- `chatvideo generate frames ...`: generate one bounded segment, for example image 1 to image 2 and image 2 to image 3.
 - `chatvideo review ...` / `chatvideo final ...`: separate temporary review from durable final delivery.
 
 The new `chatvideo design` command prints the design blueprint only. It does not submit provider jobs or publish files.
