@@ -40,7 +40,7 @@ plugins:
             首页: Home
             命令与工作流: Commands / Workflows
             CLI 树: CLI Tree
-            设计蓝图: Design Blueprint
+            工作流蓝图: Workflow Blueprint
 extra:
   alternate:
     - name: 中文
@@ -53,4 +53,4 @@ nav:
   - 首页: index.md
   - 命令与工作流:
       - CLI 树: cli-tree.md
-      - 设计蓝图: cli-design.md
+      - 工作流蓝图: workflow-blueprint.md

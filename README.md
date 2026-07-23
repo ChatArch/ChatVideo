@@ -22,9 +22,6 @@ ChatArch video tooling package.
 pip install -e ".[dev]"
 chatvideo --help
 chatvideo --version
-chatvideo design
-chatvideo design --workflow image-to-video --format json
-chatvideo design --workflow first-last-frame
 python -m pytest -q
 python -m build
 python -m pip install -e ".[docs]"
@@ -33,19 +30,19 @@ mkdocs build --strict
 
 文档站：<https://arch.gh.wzhecnu.cn/ChatVideo/>
 
-## CLI 设计方向
+## 文档中的工作流蓝图
 
-当前包先沉淀 provider-neutral 的图片到视频 CLI 蓝图，避免把具体项目素材、内部路径、任务 ID、分享链接或密钥写进可复用文档。当前重点不是视频聊天，也不是只做已有视频剪辑，而是面向图生视频模型：给定有序关键图，尤其三张图的故事板，通过相邻首尾帧约束生成片段，再合成为一个视频。完整说明见 `docs/cli-design.md`。
+当前包先用文档沉淀 provider-neutral 的图片到视频工作流蓝图，避免把具体项目素材、内部路径、任务 ID、分享链接或密钥写进可复用说明。当前重点不是视频聊天，也不是只做已有视频剪辑，而是面向图生视频模型：给定有序关键图，尤其三张图的故事板，通过相邻首尾帧约束生成片段，再合成为一个视频。完整说明见 `docs/workflow-blueprint.md`。
 
-初步覆盖的工作流：
+这些工作流现在是文档蓝图，不是已实现 CLI 命令：
 
-- `chatvideo edit ...`：已有视频的拼接、裁剪、转场和终版组装。
-- `chatvideo generate text ...`：文生视频任务提交、轮询、下载和安全摘要。
-- `chatvideo generate image ...`：按有序关键图生成视频，典型三图故事板会拆成相邻首尾帧片段。
-- `chatvideo generate frames ...`：首尾帧约束的单段生成，例如第 1 张到第 2 张、第 2 张到第 3 张。
-- `chatvideo review ...` / `chatvideo final ...`：临时 review 与最终交付分离。
+- `edit`：已有视频的拼接、裁剪、转场和终版组装。
+- `generate text`：文生视频任务提交、轮询、下载和安全摘要。
+- `generate image`：按有序关键图生成视频，典型三图故事板会拆成相邻首尾帧片段。
+- `generate frames`：首尾帧约束的单段生成，例如第 1 张到第 2 张、第 2 张到第 3 张。
+- `review` / `final`：临时 review 与最终交付分离。
 
-本阶段新增的 `chatvideo design` 只输出设计蓝图，不提交外部生成任务，也不发布文件。
+当前 CLI 只保留真实工具入口：`chatvideo --help` 和 `chatvideo --version`。等某个视频操作真的实现后，再把它加入 CLI。
 
 ## CLI 规范
 
