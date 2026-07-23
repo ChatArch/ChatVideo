@@ -10,7 +10,7 @@ Site entry: <https://arch.gh.wzhecnu.cn/ChatVideo/>
 
 -   **See Implemented Commands**
 
-    Start with the implemented `chatvideo` command tree to confirm what can run today and what remains planned.
+    Start with the implemented `chatvideo` command tree to confirm that the CLI currently keeps only real tool entry points.
 
     [Open the CLI tree](cli-tree.md)
 
@@ -18,19 +18,19 @@ Site entry: <https://arch.gh.wzhecnu.cn/ChatVideo/>
 
     Three ordered keyframes become adjacent first/last-frame segments and then one final video.
 
-    [Open the design blueprint](cli-design.md#chatvideo-generate-image)
+    [Open the workflow blueprint](workflow-blueprint.md#chatvideo-generate-image)
 
 -   **Plan First/Last-Frame Segments**
 
     Use this when the provider accepts a first frame plus a last frame to generate one video segment.
 
-    [Open the segment blueprint](cli-design.md#chatvideo-generate-frames)
+    [Open the segment blueprint](workflow-blueprint.md#chatvideo-generate-frames)
 
 -   **Separate Review From Final**
 
     Temporary review artifacts stay separate from durable final delivery and reusable docs.
 
-    [Open the handoff boundary](cli-design.md#review-to-final)
+    [Open the handoff boundary](workflow-blueprint.md#review-to-final)
 
 </div>
 
@@ -39,19 +39,16 @@ Site entry: <https://arch.gh.wzhecnu.cn/ChatVideo/>
 | Question | Page |
 | --- | --- |
 | What is actually implemented? | [CLI Tree](cli-tree.md) |
-| How do three keyframes become one video? | [Design Blueprint](cli-design.md#chatvideo-generate-frames) |
-| How is ordered image input recorded? | [Design Blueprint](cli-design.md#chatvideo-generate-image) |
-| How are text-to-video and editing commands planned? | [Design Blueprint](cli-design.md) |
-| Which commands are still planned? | [CLI Tree: Planned Boundaries](cli-tree.md#planned-boundaries) |
+| How do three keyframes become one video? | [Workflow Blueprint](workflow-blueprint.md#chatvideo-generate-frames) |
+| How is ordered image input recorded? | [Workflow Blueprint](workflow-blueprint.md#chatvideo-generate-image) |
+| How are text-to-video and editing capabilities planned? | [Workflow Blueprint](workflow-blueprint.md) |
+| Which capabilities are still planned? | [CLI Tree: Planned Boundaries](cli-tree.md#planned-boundaries) |
 
 ## Quick Commands
 
 ```bash
 chatvideo --help
 chatvideo --version
-chatvideo design
-chatvideo design --workflow image-to-video --format json
-chatvideo design --workflow first-last-frame
 ```
 
-`chatvideo design` prints the design blueprint. It does not submit provider jobs or publish files.
+The current CLI keeps only real tool entry points. Workflow planning belongs in the [workflow blueprint](workflow-blueprint.md), not in a `chatvideo` subcommand.
