@@ -9,7 +9,7 @@
 
 <div align="center">
 
-[English](README.en.md) | [简体中文](README.md)
+[English](README.en.md) | [Simplified Chinese](README.md)
 </div>
 
 # ChatVideo

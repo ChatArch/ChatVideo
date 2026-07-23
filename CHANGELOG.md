@@ -12,4 +12,6 @@
 
 ### Changed
 
+- Aligned the docs home pages and command documentation with the ChatArch MkDocs hub/card style, including a first-class CLI tree page and formal capability boundaries.
+
 ### Fixed

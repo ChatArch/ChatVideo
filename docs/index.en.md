@@ -4,33 +4,54 @@ ChatVideo is ChatArch's video workflow CLI/API package. The current focus is tur
 
 Site entry: <https://arch.gh.wzhecnu.cn/ChatVideo/>
 
-## Choose A Document
+## Choose An Entry Point
 
-| Scenario | Document |
+<div class="grid cards" markdown>
+
+-   **See Implemented Commands**
+
+    Start with the implemented `chatvideo` command tree to confirm what can run today and what remains planned.
+
+    [Open the CLI tree](cli-tree.md)
+
+-   **Understand The Image-To-Video Model**
+
+    Three ordered keyframes become adjacent first/last-frame segments and then one final video.
+
+    [Open the design blueprint](cli-design.md#chatvideo-generate-image)
+
+-   **Plan First/Last-Frame Segments**
+
+    Use this when the provider accepts a first frame plus a last frame to generate one video segment.
+
+    [Open the segment blueprint](cli-design.md#chatvideo-generate-frames)
+
+-   **Separate Review From Final**
+
+    Temporary review artifacts stay separate from durable final delivery and reusable docs.
+
+    [Open the handoff boundary](cli-design.md#review-to-final)
+
+</div>
+
+## Reading Map
+
+| Question | Page |
 | --- | --- |
-| Understand the current CLI direction | [CLI Design Blueprint](cli-design.md) |
-| Plan concat, trim, and transitions for existing clips | [CLI Design Blueprint](cli-design.md#chatvideo-edit) |
-| Plan text-to-video submission and download | [CLI Design Blueprint](cli-design.md#chatvideo-generate-text) |
-| Plan the image-to-video model input shape | [CLI Design Blueprint](cli-design.md#current-user-model) |
-| Plan one video from three keyframe images | [CLI Design Blueprint](cli-design.md#chatvideo-generate-frames) |
-| Plan first/last-frame segment generation | [CLI Design Blueprint](cli-design.md#chatvideo-generate-frames) |
-| Separate temporary review from final delivery | [CLI Design Blueprint](cli-design.md#chatvideo-review-and-chatvideo-final) |
+| What is actually implemented? | [CLI Tree](cli-tree.md) |
+| How do three keyframes become one video? | [Design Blueprint](cli-design.md#chatvideo-generate-frames) |
+| How is ordered image input recorded? | [Design Blueprint](cli-design.md#chatvideo-generate-image) |
+| How are text-to-video and editing commands planned? | [Design Blueprint](cli-design.md) |
+| Which commands are still planned? | [CLI Tree: Planned Boundaries](cli-tree.md#planned-boundaries) |
 
-## Site Structure
-
-The docs stay intentionally small for now:
-
-- **CLI / Workflows**: provider-neutral command blueprints and privacy boundaries.
-
-Future implementation PRs can add usage guides, provider adapters, manifest schemas, and review/final publishing chapters.
-
-## CLI
+## Quick Commands
 
 ```bash
 chatvideo --help
 chatvideo --version
 chatvideo design
 chatvideo design --workflow image-to-video --format json
+chatvideo design --workflow first-last-frame
 ```
 
-The current `chatvideo design` command prints the design blueprint only. It does not submit provider jobs or publish files.
+`chatvideo design` prints the design blueprint. It does not submit provider jobs or publish files.
