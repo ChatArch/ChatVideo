@@ -1,0 +1,51 @@
+site_name: ChatVideo 文档
+site_url: https://arch.gh.wzhecnu.cn/ChatVideo/
+repo_url: https://github.com/ChatArch/ChatVideo
+repo_name: ChatArch/ChatVideo
+edit_uri: edit/main/docs/
+docs_dir: docs/
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.action.edit
+plugins:
+  - search
+  - i18n:
+      docs_structure: suffix
+      fallback_to_default: true
+      reconfigure_material: true
+      reconfigure_search: true
+      languages:
+        - locale: zh
+          default: true
+          name: 中文
+          build: true
+          site_name: ChatVideo 文档
+        - locale: en
+          name: English
+          build: true
+          site_name: ChatVideo Documentation
+          nav_translations:
+            首页: Home
+            CLI / 工作流: CLI / Workflows
+            CLI 设计蓝图: CLI Design Blueprint
+extra:
+  alternate:
+    - name: 中文
+      link: /ChatVideo/
+      lang: zh
+    - name: English
+      link: /ChatVideo/en/
+      lang: en
+nav:
+  - 首页: index.md
+  - CLI / 工作流:
+      - CLI 设计蓝图: cli-design.md

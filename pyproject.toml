@@ -20,12 +20,14 @@ classifiers = [
 [project.urls]
 Homepage = "https://github.com/ChatArch/ChatVideo"
 Repository = "https://github.com/ChatArch/ChatVideo"
+Documentation = "https://arch.gh.wzhecnu.cn/ChatVideo/"
 
 [project.scripts]
 chatvideo = "chatvideo.cli:main"
 
 [project.optional-dependencies]
 dev = ["build", "pytest", "twine"]
+docs = ["mkdocs>=1.4.0", "mkdocs-material>=9.0.0", "mkdocs-static-i18n>=1.2.0", "mike>=2.0.0"]
 
 [tool.setuptools.dynamic]
 version = {attr = "chatvideo.__version__"}
