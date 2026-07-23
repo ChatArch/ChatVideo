@@ -29,7 +29,7 @@ segment-02: frame-02.png -> frame-03.png
 final.mp4:  segment-01 + segment-02
 ```
 
-因此文档中的 `generate image` / `generate frames` 目前都是设计蓝图：它们描述未来 CLI 应如何接收关键帧、记录顺序、分段 review 和最终拼接；当前 PR 只实现 `chatvideo design` 来输出这个蓝图。
+因此文档中的 `generate image` / `generate frames` 是规划蓝图：它们描述未来 CLI 应如何接收关键帧、记录顺序、分段 review 和最终拼接。当前可执行接口集中在 `chatvideo design`，用于输出和审阅这些蓝图。
 
 ## 命令组草案
 
@@ -99,7 +99,7 @@ chatvideo edit concat --manifest generated-segments.json --output final.mp4
 - 三张图生成一个视频时，默认拆成两段相邻首尾帧任务。
 - 逐段 review，只有通过 review 的片段才能组装成最终视频。
 
-### chatvideo review 和 chatvideo final
+### chatvideo review 和 chatvideo final { #review-to-final }
 
 负责临时 review 和长期最终产物之间的边界。
 
@@ -123,6 +123,20 @@ chatvideo final export --artifact final.mp4 --target archive
 - 可复用模板不嵌入用户特定的素材描述。
 - 优先记录通用元数据：时长、分辨率、编码、音轨和产物角色。
 
-## 当前 PR 范围
+## 当前能力与规划边界
 
-本 PR 只新增 `chatvideo design` 命令和文档站结构。它不实现 provider adapter，不提交网络生成任务，也不发布文件。后续 PR 可以按这个隐私契约逐步实现各个命令组。
+<div class="grid cards" markdown>
+
+-   **已实现**
+
+    `chatvideo design` 可以输出全部或单个工作流蓝图，并支持文本或 JSON 输出。
+
+-   **规划中**
+
+    `edit`、`generate`、`review`、`final` 等命令组描述目标接口和安全边界，还不是 provider 执行入口。
+
+-   **安全默认值**
+
+    原始图片和 provider 凭据默认留在本地环境；可复用文档只记录通用流程和元数据。
+
+</div>

@@ -29,7 +29,7 @@ segment-02: frame-02.png -> frame-03.png
 final.mp4:  segment-01 + segment-02
 ```
 
-Therefore, the `generate image` and `generate frames` commands documented here are design blueprints. They describe how a future CLI should accept keyframes, record order, review segments, and assemble the final video. This PR implements only `chatvideo design`, which prints the blueprint.
+Therefore, the `generate image` and `generate frames` commands documented here are design blueprints. They describe how a future CLI should accept keyframes, record order, review segments, and assemble the final video. The current executable interface is `chatvideo design`, which prints and filters these blueprints.
 
 ## Proposed Command Groups
 
@@ -99,7 +99,7 @@ Expected behavior:
 - For one video from three images, defaults to two adjacent first/last-frame jobs.
 - Reviews each segment and assembles only approved segments into the final video.
 
-### chatvideo review and chatvideo final
+### chatvideo review and chatvideo final { #review-to-final }
 
 Own the handoff boundary between temporary review and durable output.
 
@@ -123,6 +123,20 @@ Expected behavior:
 - Avoid embedding user-specific source descriptions in reusable templates.
 - Prefer generic metadata such as duration, resolution, codec, audio presence, and artifact role.
 
-## Current PR Scope
+## Current Capability And Planned Boundaries
 
-This PR adds the `chatvideo design` command and documentation site structure only. It does not implement provider adapters, submit network jobs, or publish files. Future PRs can implement each command group behind the documented privacy contract.
+<div class="grid cards" markdown>
+
+-   **Implemented**
+
+    `chatvideo design` can print all workflow blueprints or one selected blueprint in text or JSON format.
+
+-   **Planned**
+
+    The `edit`, `generate`, `review`, and `final` command groups describe target interfaces and safety boundaries; they are not provider execution entry points yet.
+
+-   **Safe Defaults**
+
+    Raw images and provider credentials stay in the local environment by default; reusable docs record only generic workflows and metadata.
+
+</div>
