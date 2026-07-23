@@ -1,20 +1,8 @@
-<div align="center">
-    <a href="https://pypi.python.org/pypi/ChatVideo">
-        <img src="https://img.shields.io/pypi/v/ChatVideo.svg" alt="PyPI version" />
-    </a>
-    <a href="https://github.com/ChatArch/ChatVideo/actions/workflows/ci.yml">
-        <img src="https://github.com/ChatArch/ChatVideo/actions/workflows/ci.yml/badge.svg" alt="Tests" />
-    </a>
-</div>
-
-<div align="center">
-
-[英文版](README.en.md) | [简体中文](README.md)
-</div>
-
 # ChatVideo
 
-ChatArch video tooling package.
+[英文版](README.en.md) | [简体中文](README.md)
+
+ChatArch 视频工作流工具包。
 
 ## 快速开始
 
