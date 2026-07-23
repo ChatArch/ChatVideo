@@ -1,17 +1,17 @@
-# Changelog
+# 更新日志
 
 ## 2026-07-18
 
-### Added
+### 新增
 
-- Published the first real ChatVideo package release after the `0.0.1` name-claim placeholder.
-- Added a MkDocs Material documentation site structure with Chinese/English landing pages, workflow blueprint pages, Preview Docs, Deploy Docs, and strict docs builds in CI.
-- Documented a privacy-safe workflow blueprint covering editing, text-to-video, image-to-video, first/last-frame generation, review publishing, and final export.
-- Clarified the current image-to-video user model: three ordered keyframe images become adjacent first/last-frame segments that are reviewed and assembled into one video.
+- 在 `0.0.1` 占名版本之后，发布第一个真实 ChatVideo 包版本。
+- 增加 MkDocs Material 文档站结构，包括中英文首页、工作流蓝图页面、Preview Docs、Deploy Docs 和严格文档构建。
+- 记录隐私安全的工作流蓝图，覆盖剪辑、文生视频、图生视频、首尾帧生成、review 发布和最终交付。
+- 明确当前图片到视频模型：三张有序关键帧会拆成相邻首尾帧片段，review 通过后再组装成一个视频。
 
-### Changed
+### 变更
 
-- Aligned the docs home pages and command documentation with the ChatArch MkDocs hub/card style, including a first-class CLI tree page and formal capability boundaries.
-- Removed the documentation-only `chatvideo design` CLI command; workflow planning now lives only in docs until real video operations are implemented.
+- 按 ChatArch MkDocs hub/card 风格对齐文档首页和命令文档，补充第一等 CLI 树页面和正式能力边界。
+- 移除只输出文档内容的 `chatvideo design` CLI；在真实视频操作实现前，工作流规划只保留在文档里。
 
-### Fixed
+### 修复
