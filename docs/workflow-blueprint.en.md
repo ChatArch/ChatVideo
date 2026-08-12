@@ -29,7 +29,7 @@ segment-02: frame-02.png -> frame-03.png
 final.mp4:  segment-01 + segment-02
 ```
 
-This page is a design note for future tool behavior. The current executable CLI only exposes `chatvideo --help` and `chatvideo --version`.
+This page is a design note for future tool behavior. The current executable CLI only exposes `chatvideo --help`, `chatvideo --version`, and `chatvideo --tree`.
 
 ## Planned Capabilities
 
@@ -102,7 +102,7 @@ Expected behavior:
 
 -   **Implemented**
 
-    The current CLI exposes only help and version entry points.
+    The current CLI exposes only help, version, and generated tree entry points.
 
 -   **Planned**
 

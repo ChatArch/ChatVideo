@@ -29,7 +29,7 @@ segment-02: frame-02.png -> frame-03.png
 final.mp4:  segment-01 + segment-02
 ```
 
-这些内容是未来工具能力的设计说明。当前可执行 CLI 只有 `chatvideo --help` 和 `chatvideo --version`。
+这些内容是未来工具能力的设计说明。当前可执行 CLI 只有 `chatvideo --help`、`chatvideo --version` 和 `chatvideo --tree`。
 
 ## 规划能力
 

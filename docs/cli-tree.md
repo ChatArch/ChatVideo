@@ -5,9 +5,10 @@
 ## 当前命令拓扑
 
 ```text
-chatvideo
-|-- --help     # 查看顶层帮助
-`-- --version  # 输出当前包版本
+chatvideo  # ChatVideo command line interface.
+├── --help  # Show CLI help and registered options.
+├── --version  # Print the current package version.
+└── --tree  # Print the registered CLI tree.
 ```
 
 ## 当前能力
@@ -21,6 +22,10 @@ chatvideo
 -   **版本入口**
 
     `chatvideo --version` 用来确认安装的 ChatVideo 包版本。
+
+-   **CLI 树入口**
+
+    `chatvideo --tree` 从真实 Click 注册面生成当前命令树。
 
 -   **无设计命令**
 
@@ -45,4 +50,4 @@ chatvideo
 
 - 只有真正执行视频工作流的功能，才应该进入 CLI。
 - Markdown 设计说明留在 docs，不包装成 CLI 命令。
-- 新增可执行命令时，先更新这页的树，再补测试和更深的使用文档。
+- 新增可执行命令时，先让 `chatvideo --tree` 反映真实注册面，再同步这页、测试和更深的使用文档。

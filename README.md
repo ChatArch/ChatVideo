@@ -30,16 +30,11 @@ mkdocs build --strict
 - `generate frames`：首尾帧约束的单段生成，例如第 1 张到第 2 张、第 2 张到第 3 张。
 - `review` / `final`：临时 review 与最终交付分离。
 
-当前 CLI 只保留真实工具入口：`chatvideo --help` 和 `chatvideo --version`。等某个视频操作真的实现后，再把它加入 CLI。
+当前 CLI 只保留真实工具入口：`chatvideo --help`、`chatvideo --version` 和由真实 Click 注册面生成的 `chatvideo --tree`。等某个视频操作真的实现后，再把它加入 CLI。
 
 ## CLI 规范
 
-这个模板默认依赖 `chatstyle>=0.1.0,<0.2.0` 和 `chatenv>=0.2.0,<0.3.0`，新的命令应优先使用：
-
-- `CommandSchema` / `CommandField` 描述输入。
-- `add_interactive_option()` 提供统一 `-i/-I`。
-- `resolve_command_inputs()` 统一缺参补问、默认值、TTY 与校验。
-- 默认生成 `config.py` 和 `chatenv.configs` entry point，使包可被 ChatEnv 发现；只有明确不需要 ChatEnv 接入时才使用 `--without-chatenv-provider`。
+当前运行时只依赖 Click。新增可执行命令时，应先让真实 Click 注册面驱动 `chatvideo --tree`，再同步 README、MkDocs CLI 树和测试。需要 provider/profile 配置时再引入对应配置层，不保留未使用的运行时依赖。
 
 ## 目录结构
 

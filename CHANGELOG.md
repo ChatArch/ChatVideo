@@ -1,5 +1,18 @@
 # 更新日志
 
+## 2026-08-12
+
+### 新增
+
+- 准备 `0.1.1` patch 版本：新增 `chatvideo --tree`，从真实 Click 注册面生成当前 root-only CLI 树。
+- 增加发布/文档 workflow contract 测试，锁定 tag-only OIDC 发布、默认分支 ancestor guard、Preview Docs 从 `mkdocs.yml site_url` 派生 URL。
+
+### 变更
+
+- 继续保持 ChatVideo 当前没有视频业务子命令；工作流规划保留在文档里，不包装成 `design` 或 `generate` CLI。
+- MkDocs Material 启用 emoji renderer baseline，并收紧 docs extra 版本窗口。
+- 移除未使用的 ChatStyle/ChatEnv 运行时依赖，当前 CLI 仅依赖 Click。
+
 ## 2026-07-18
 
 ### 新增
