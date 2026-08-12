@@ -5,9 +5,10 @@ This page lists only command entries that are implemented today. ChatVideo does 
 ## Current Command Topology
 
 ```text
-chatvideo
-|-- --help     # Show top-level help
-`-- --version  # Print the installed package version
+chatvideo  # ChatVideo command line interface.
+├── --help  # Show CLI help and registered options.
+├── --version  # Print the current package version.
+└── --tree  # Print the registered CLI tree.
 ```
 
 ## Current Capabilities
@@ -21,6 +22,10 @@ chatvideo
 -   **Version Entry**
 
     `chatvideo --version` confirms the installed ChatVideo package version.
+
+-   **CLI Tree Entry**
+
+    `chatvideo --tree` is generated from the real Click registry.
 
 -   **No Design Command**
 
@@ -45,4 +50,4 @@ These capabilities are described only in the documentation blueprint; they are n
 
 - Only behavior that performs real video workflow work should enter the CLI.
 - Markdown design notes stay in docs; do not wrap them as CLI commands.
-- When a runnable command is added, update this tree before adding tests and deeper usage docs.
+- When a runnable command is added, let `chatvideo --tree` reflect the registered command surface first, then sync this page, tests, and deeper usage docs.

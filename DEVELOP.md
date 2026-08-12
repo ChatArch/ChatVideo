@@ -2,23 +2,15 @@
 
 ## CLI Rules
 
-- Use `chatstyle>=0.1.0,<0.2.0` and `chatenv>=0.2.0,<0.3.0` as the canonical CLI interaction runtime.
-- Prefer `CommandSchema`, `CommandField`, `add_interactive_option()`, and `resolve_command_inputs()` for new commands.
-- Missing required args should auto-enter interactive mode when recoverable.
-- `-i` forces interactive mode; `-I` disables prompting and must fail fast.
-- Prompt defaults must match actual execution defaults.
-- Sensitive values must stay masked in prompts and summaries.
-- Prefer lazy imports in CLI wiring and keep implementation imports local when possible.
+- Keep the public command surface aligned with the real Click registry; `chatvideo --tree` is the source of truth for docs, README snippets, and CLI tests.
+- Do not add documentation-only commands such as `design` or placeholder video workflow commands.
+- Add provider/profile runtime dependencies only when a real command needs them.
 
-## Docs and Tests
+## Verification
 
-- Use doc-first CLI testing.
-- Put real CLI coverage under `tests/cli-tests/`.
-- Put mock/fake CLI coverage under `tests/mock-cli-tests/`.
-- Keep `README.md`, `docs/`, and `CHANGELOG.md` in sync with user-facing changes.
-
-## Automation
-
-- Keep automation small and reviewable.
-- Prefer commands that can run in CI without interactive prompts.
-- Ensure generated defaults are safe for local development.
+```bash
+PYTHONPATH=src python -m pytest -q
+PYTHONPATH=src python -m chatvideo.cli --tree
+python -m build
+mkdocs build --strict
+```

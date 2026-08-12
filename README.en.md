@@ -42,16 +42,11 @@ These workflows are documentation blueprints, not implemented CLI commands:
 - `generate frames`: generate one bounded segment, for example image 1 to image 2 and image 2 to image 3.
 - `review` / `final`: separate temporary review from durable final delivery.
 
-The current CLI keeps only real tool entry points: `chatvideo --help` and `chatvideo --version`. Add a command only after it performs actual video workflow work.
+The current CLI keeps only real tool entry points: `chatvideo --help`, `chatvideo --version`, and `chatvideo --tree`, which is generated from the real Click registry. Add a command only after it performs actual video workflow work.
 
 ## CLI Contract
 
-This template depends on `chatstyle>=0.1.0,<0.2.0` and `chatenv>=0.2.0,<0.3.0`. New commands should prefer:
-
-- `CommandSchema` / `CommandField` for inputs.
-- `add_interactive_option()` for the shared `-i/-I` switch.
-- `resolve_command_inputs()` for missing args, defaults, TTY behavior, and validation.
-- Generate `config.py` and a `chatenv.configs` entry point by default so the package is ChatEnv-discoverable; use `--without-chatenv-provider` only when ChatEnv integration is intentionally not needed.
+The current runtime depends on Click only. When a runnable command is added, let the real Click registry drive `chatvideo --tree`, then sync the README, MkDocs CLI tree, and tests. Add provider/profile configuration layers only when the command actually needs them instead of keeping unused runtime dependencies.
 
 ## Layout
 
