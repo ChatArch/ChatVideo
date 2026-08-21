@@ -1,14 +1,30 @@
 # ChatVideo CLI 树
 
-这页只列当前已经实现的命令入口。ChatVideo 还没有真正的视频操作子命令；图片到视频、首尾帧、review/final 等内容目前是[工作流蓝图](workflow-blueprint.md)，不是 CLI。
+这页只列当前已经实现的命令入口。ChatVideo 使用共享的 `chatstyle.add_tree_option()` 从真实 Click 注册面生成命令树；图片到视频、首尾帧、review/final 等内容目前是[工作流蓝图](workflow-blueprint.md)，不是 CLI。
 
-## 当前命令拓扑
+- `chatvideo --tree` 显示参数签名，适合接口审查。
+- `chatvideo --tree-brief` 保留相同节点和说明，但省略参数签名。
+
+当前 CLI 是 root-only，没有业务命令参数，因此完整和简洁视图相同。
+
+## 完整命令树
 
 ```text
-chatvideo  # ChatVideo command line interface.
-├── --help  # Show CLI help and registered options.
-├── --version  # Print the current package version.
-└── --tree  # Print the registered CLI tree.
+chatvideo
+├── --help  # Show this message and exit.
+├── --version  # Show the version and exit.
+├── --tree  # Print the registered CLI tree and exit.
+└── --tree-brief  # Print the registered CLI tree without parameter signatures and exit.
+```
+
+## 简洁命令树
+
+```text
+chatvideo
+├── --help  # Show this message and exit.
+├── --version  # Show the version and exit.
+├── --tree  # Print the registered CLI tree and exit.
+└── --tree-brief  # Print the registered CLI tree without parameter signatures and exit.
 ```
 
 ## 当前能力
@@ -23,9 +39,13 @@ chatvideo  # ChatVideo command line interface.
 
     `chatvideo --version` 用来确认安装的 ChatVideo 包版本。
 
--   **CLI 树入口**
+-   **完整 CLI 树**
 
-    `chatvideo --tree` 从真实 Click 注册面生成当前命令树。
+    `chatvideo --tree` 从真实 Click 注册面生成带参数签名的命令树。
+
+-   **简洁 CLI 树**
+
+    `chatvideo --tree-brief` 生成相同节点，但省略业务命令参数签名。
 
 -   **无设计命令**
 
@@ -50,4 +70,4 @@ chatvideo  # ChatVideo command line interface.
 
 - 只有真正执行视频工作流的功能，才应该进入 CLI。
 - Markdown 设计说明留在 docs，不包装成 CLI 命令。
-- 新增可执行命令时，先让 `chatvideo --tree` 反映真实注册面，再同步这页、测试和更深的使用文档。
+- 新增可执行命令时，先让 `chatvideo --tree` / `chatvideo --tree-brief` 反映真实注册面，再同步这页、测试和更深的使用文档。

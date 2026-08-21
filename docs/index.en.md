@@ -49,6 +49,8 @@ Site entry: <https://arch.gh.wzhecnu.cn/ChatVideo/>
 ```bash
 chatvideo --help
 chatvideo --version
+chatvideo --tree
+chatvideo --tree-brief
 ```
 
-The current CLI keeps only real tool entry points. Workflow planning belongs in the [workflow blueprint](workflow-blueprint.md), not in a `chatvideo` subcommand.
+The current CLI keeps only real tool entry points. The shared ChatStyle runtime generates both full and brief trees from the Click registry. Workflow planning belongs in the [workflow blueprint](workflow-blueprint.md), not in a `chatvideo` subcommand.

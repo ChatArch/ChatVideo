@@ -22,8 +22,11 @@ ChatArch video tooling package.
 pip install -e ".[dev]"
 chatvideo --help
 chatvideo --version
+chatvideo --tree
+chatvideo --tree-brief
 python -m pytest -q
 python -m build
+python -m twine check dist/*
 python -m pip install -e ".[docs]"
 mkdocs build --strict
 ```
@@ -42,11 +45,11 @@ These workflows are documentation blueprints, not implemented CLI commands:
 - `generate frames`: generate one bounded segment, for example image 1 to image 2 and image 2 to image 3.
 - `review` / `final`: separate temporary review from durable final delivery.
 
-The current CLI keeps only real tool entry points: `chatvideo --help`, `chatvideo --version`, and `chatvideo --tree`, which is generated from the real Click registry. Add a command only after it performs actual video workflow work.
+The current CLI keeps only real tool entry points: `chatvideo --help`, `chatvideo --version`, `chatvideo --tree`, and `chatvideo --tree-brief`. Both full and brief trees come from the real Click registry. Add a command only after it performs actual video workflow work.
 
 ## CLI Contract
 
-The current runtime depends on Click only. When a runnable command is added, let the real Click registry drive `chatvideo --tree`, then sync the README, MkDocs CLI tree, and tests. Add provider/profile configuration layers only when the command actually needs them instead of keeping unused runtime dependencies.
+ChatVideo uses the shared `add_tree_option()` from `chatstyle>=0.2.0,<0.3.0` for `--tree` / `--tree-brief`; it does not maintain a package-local tree renderer. When a runnable command is added, update the real Click registry first, then sync the README, MkDocs CLI tree, and tests. The package currently has no env/profile/config behavior, so it does not depend on ChatEnv; add typed provider registration and ChatEnv-managed storage paths only when a real command needs them.
 
 ## Layout
 
