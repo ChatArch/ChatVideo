@@ -49,6 +49,8 @@ ChatVideo 是 ChatArch 的视频工作流 CLI/API 包。当前重点是把真实
 ```bash
 chatvideo --help
 chatvideo --version
+chatvideo --tree
+chatvideo --tree-brief
 ```
 
-当前 CLI 只保留真实工具入口。工作流规划放在[工作流蓝图](workflow-blueprint.md)里，不作为 `chatvideo` 子命令暴露。
+当前 CLI 只保留真实工具入口。完整和简洁命令树都由共享 ChatStyle runtime 从 Click 注册面生成；工作流规划放在[工作流蓝图](workflow-blueprint.md)里，不作为 `chatvideo` 子命令暴露。

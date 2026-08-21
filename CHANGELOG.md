@@ -1,5 +1,17 @@
 # 更新日志
 
+## 2026-08-22
+
+### 新增
+
+- 准备 `0.1.2` patch 版本：新增 `chatvideo --tree-brief`，与完整树保持同一真实 Click 注册面。
+- 增加 Python 3.10-3.12 的 installed CLI、构建产物、Twine 和独立 wheel CLI CI 验收。
+
+### 变更
+
+- 用 `chatstyle>=0.2.0,<0.3.0` 的共享 `add_tree_option()` 替换包内 tree renderer，并显式固定 root command 名称为 `chatvideo`。
+- 同步中英文 README、MkDocs CLI 树、开发说明和 contract tests；当前没有 env/profile/config 行为，继续不引入 ChatEnv。
+
 ## 2026-08-12
 
 ### 新增

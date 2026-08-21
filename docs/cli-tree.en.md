@@ -1,14 +1,30 @@
 # ChatVideo CLI Tree
 
-This page lists only command entries that are implemented today. ChatVideo does not have real video-operation subcommands yet; image-to-video, first/last-frame, review, and final-delivery flows live in the [workflow blueprint](workflow-blueprint.md), not in the CLI.
+This page lists only command entries that are implemented today. ChatVideo uses the shared `chatstyle.add_tree_option()` to generate its tree from the real Click registry. Image-to-video, first/last-frame, review, and final-delivery flows live in the [workflow blueprint](workflow-blueprint.md), not in the CLI.
 
-## Current Command Topology
+- `chatvideo --tree` includes parameter signatures for interface review.
+- `chatvideo --tree-brief` keeps the same nodes and descriptions while omitting parameter signatures.
+
+The current CLI is root-only and has no business-command parameters, so the full and brief views are identical.
+
+## Full Command Tree
 
 ```text
-chatvideo  # ChatVideo command line interface.
-├── --help  # Show CLI help and registered options.
-├── --version  # Print the current package version.
-└── --tree  # Print the registered CLI tree.
+chatvideo
+├── --help  # Show this message and exit.
+├── --version  # Show the version and exit.
+├── --tree  # Print the registered CLI tree and exit.
+└── --tree-brief  # Print the registered CLI tree without parameter signatures and exit.
+```
+
+## Brief Command Tree
+
+```text
+chatvideo
+├── --help  # Show this message and exit.
+├── --version  # Show the version and exit.
+├── --tree  # Print the registered CLI tree and exit.
+└── --tree-brief  # Print the registered CLI tree without parameter signatures and exit.
 ```
 
 ## Current Capabilities
@@ -23,9 +39,13 @@ chatvideo  # ChatVideo command line interface.
 
     `chatvideo --version` confirms the installed ChatVideo package version.
 
--   **CLI Tree Entry**
+-   **Full CLI Tree**
 
-    `chatvideo --tree` is generated from the real Click registry.
+    `chatvideo --tree` generates the registered command tree with parameter signatures.
+
+-   **Brief CLI Tree**
+
+    `chatvideo --tree-brief` generates the same nodes without business-command parameter signatures.
 
 -   **No Design Command**
 
@@ -50,4 +70,4 @@ These capabilities are described only in the documentation blueprint; they are n
 
 - Only behavior that performs real video workflow work should enter the CLI.
 - Markdown design notes stay in docs; do not wrap them as CLI commands.
-- When a runnable command is added, let `chatvideo --tree` reflect the registered command surface first, then sync this page, tests, and deeper usage docs.
+- When a runnable command is added, let `chatvideo --tree` / `chatvideo --tree-brief` reflect the registered command surface first, then sync this page, tests, and deeper usage docs.
